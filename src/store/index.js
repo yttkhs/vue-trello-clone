@@ -3,16 +3,15 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const vueTrelloClone = {
+export const vueTrelloClone = {
   state: {
-    "vue-trello-clone": []
+    "vue-trello-clone": null
   },
   mutations: {
     fetch(state, payload) {
       state["vue-trello-clone"] = payload;
     }
-  },
-  actions: {}
+  }
 };
 
 export default new Vuex.Store({
