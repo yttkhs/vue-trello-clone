@@ -1,28 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <TheHeader />
+    <BaseBoard />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+const STORAGE_KEY = "vue-trello-clone";
+import TheHeader from "./components/TheHeader";
+import BaseBoard from "./components/BaseBoard";
 export default {
   name: "app",
-  components: {
-    HelloWorld
+  components: { BaseBoard, TheHeader },
+  localStorage: {
+    "vue-trello-clone": {
+      type: Array
+    }
+  },
+  created() {
+    this.store.commit(
+      "fetch",
+      JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")
+    );
+    this.$localStorage.set("vue-trello-clone", this.$store.state["vue-trello-clone"] || []);
+  },
+  methods: {
+    storeLocalStorage() {
+
+    }
   }
 };
 </script>
 
 <style lang="scss">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
