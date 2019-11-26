@@ -1,5 +1,9 @@
 <template>
-  <div class="modal-new-board" v-show="newBoardModal" @click.self="closeNewBoardModal">
+  <div
+    class="modal-new-board"
+    v-show="newBoardModal"
+    @click.self="closeNewBoardModal"
+  >
     <div class="modal-new-board--modal">
       <header class="modal-new-board--modal--header">
         <h1 class="modal-new-board--modal--header-title">
@@ -20,7 +24,10 @@
           <input type="text" v-model="name" />
         </label>
       </form>
-      <button class="button-add-new-board">
+      <button
+        class="button-add-new-board"
+        :class="{ 'no-input': !confirmInputName }"
+      >
         <font-awesome-icon :icon="['fas', 'plus-circle']" />作成する
       </button>
     </div>
@@ -38,8 +45,12 @@ export default {
   computed: {
     newBoardModal() {
       return this.$store.state.newBoardModal.modal;
+    },
+    confirmInputName() {
+      return this.name.length > 0;
     }
   },
+  //TODO: Make input focus when opening modal
   methods: {
     closeNewBoardModal() {
       this.$store.commit("toggle", false);
@@ -55,7 +66,7 @@ export default {
   right: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(#000, 0.8);
+  background-color: rgba(#000, 0.6);
 
   &--modal {
     width: 350px;
@@ -81,7 +92,7 @@ export default {
 
     &--form {
       padding: 10px;
-      background-color: #999;
+      background-color: #ccc;
       border-radius: 0 0 5px 5px;
 
       &-description {
