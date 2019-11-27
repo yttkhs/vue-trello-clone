@@ -16,17 +16,21 @@
           <font-awesome-icon :icon="['fas', 'times-circle']" />
         </button>
       </header>
-      <form class="modal-new-board--modal--form">
+      <form
+        @submit.prevent="clickAddNewBoardButton"
+        class="modal-new-board--modal--form"
+      >
         <label>
           <span class="modal-new-board--modal--form-description">
             ボードの名前を入力してください
           </span>
-          <input type="text" v-model="name" />
+          <input type="text" ref="name" v-model="name" />
         </label>
       </form>
       <button
         class="button-add-new-board"
         :class="{ 'no-input': !confirmInputName }"
+        @click="clickAddNewBoardButton"
       >
         <font-awesome-icon :icon="['fas', 'plus-circle']" />作成する
       </button>
@@ -35,6 +39,8 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+
 export default {
   name: "ModalNewBoard",
   data() {
@@ -43,17 +49,44 @@ export default {
     };
   },
   computed: {
-    newBoardModal() {
-      return this.$store.state.newBoardModal.modal;
-    },
+    ...mapState({
+      vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"],
+      newBoardModal: state => state.newBoardModal.modal
+    }),
     confirmInputName() {
       return this.name.length > 0;
     }
   },
-  //TODO: Make input focus when opening modal
   methods: {
+    ...mapMutations(["toggle", "fetch"]),
     closeNewBoardModal() {
-      this.$store.commit("toggle", false);
+      this.toggle(false);
+      this.resetInputValue();
+    },
+    clickAddNewBoardButton() {
+      if (this.confirmInputName) {
+        //TODO: Asynchronous processing (async/await)
+        this.addNewBoard();
+        this.closeNewBoardModal();
+        this.resetInputValue();
+      } else {
+        alert("ボードを名前を入力してください");
+      }
+    },
+    addNewBoard() {
+      this.fetch();
+    },
+    findBoard() {},
+    focusInput(elm) {
+      elm.focus();
+    },
+    resetInputValue() {
+      this.name = "";
+    }
+  },
+  watch: {
+    newBoardModal(val) {
+      if (val) this.focusInput(this.$refs.name);
     }
   }
 };

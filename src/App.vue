@@ -22,11 +22,10 @@ export default {
   },
   computed: {
     vueTrelloCloneData() {
-      return this.$store.state.vueTrelloClone[STORAGE_KEY];
+      return this.$store.state.vueTrelloClone["vue-trello-clone"];
     }
   },
   watch: {
-    // 算出プロパティ"vueTrelloCloneData"を監視
     vueTrelloCloneData() {
       LocalStorage.set(STORAGE_KEY, this.vueTrelloCloneData);
     }
