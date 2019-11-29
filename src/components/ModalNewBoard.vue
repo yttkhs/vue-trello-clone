@@ -40,6 +40,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import normalizeObj from "../lib/normalizeObj";
 
 export default {
   name: "ModalNewBoard",
@@ -58,25 +59,32 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["toggle", "fetch"]),
+    ...mapMutations(["toggleModal", "setData"]),
     closeNewBoardModal() {
-      this.toggle(false);
+      this.toggleModal(false);
       this.resetInputValue();
     },
     clickAddNewBoardButton() {
       if (this.confirmInputName) {
-        //TODO: Asynchronous processing (async/await)
         this.addNewBoard();
         this.closeNewBoardModal();
         this.resetInputValue();
       } else {
-        alert("ボードを名前を入力してください");
+        alert("ボードの名前を入力してください");
       }
     },
     addNewBoard() {
-      this.fetch();
+      if (this.vueTrelloCloneData.board) {
+        const boardNum = this.vueTrelloCloneData.board.length;
+        const dataToAdd = { id: boardNum, name: this.name };
+        const rawData = normalizeObj(this.vueTrelloCloneData);
+        rawData.board[boardNum] = dataToAdd;
+        this.setData(rawData);
+      } else {
+        const initialData = { board: [{ id: 0, name: this.name }] };
+        this.setData(initialData);
+      }
     },
-    findBoard() {},
     focusInput(elm) {
       elm.focus();
     },

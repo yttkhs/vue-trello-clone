@@ -5,10 +5,10 @@ Vue.use(Vuex);
 
 export const vueTrelloClone = {
   state: {
-    "vue-trello-clone": []
+    "vue-trello-clone": {}
   },
   mutations: {
-    fetch(state, data) {
+    setData(state, data) {
       state["vue-trello-clone"] = data;
     }
   }
@@ -19,7 +19,7 @@ export const newBoardModal = {
     modal: false
   },
   mutations: {
-    toggle(state, payload) {
+    toggleModal(state, payload) {
       state.modal = payload;
     }
   }

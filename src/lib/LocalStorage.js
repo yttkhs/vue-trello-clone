@@ -5,7 +5,7 @@ export const LocalStorage = {
    * @returns {any}
    */
   fetch(STORAGE_KEY) {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   },
   /**
    * ローカルストレージにデータを格納する

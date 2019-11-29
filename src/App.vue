@@ -18,7 +18,7 @@ export default {
   name: "app",
   components: { ModalNewBoard, BaseBoard, TheHeader },
   created() {
-    this.$store.commit("fetch", LocalStorage.fetch(STORAGE_KEY));
+    this.$store.commit("setData", LocalStorage.fetch(STORAGE_KEY));
   },
   computed: {
     vueTrelloCloneData() {
