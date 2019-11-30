@@ -1,5 +1,6 @@
 <template>
   <div class="base-board">
+    <h2 class="base-board--name">{{ currentBoardData.name }}</h2>
     <div class="base-board--lists">
       <base-list />
     </div>
@@ -7,10 +8,27 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import BaseList from "./BaseList";
+
 export default {
   name: "BaseBoard",
-  components: { BaseList }
+  components: { BaseList },
+  data() {
+    return {
+      currentBoardData: ""
+    };
+  },
+  created() {
+    this.currentBoardData = this.vueTrelloCloneData.board[this.currentBoard];
+  },
+  computed: {
+    ...mapState({
+      currentBoard: state => state.currentBoard.number,
+      vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"]
+    })
+  },
+  methods: {}
 };
 </script>
 

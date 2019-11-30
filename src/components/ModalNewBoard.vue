@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 import normalizeObj from "../lib/normalizeObj";
 
 export default {
@@ -59,7 +59,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["toggleModal", "setData"]),
+    ...mapMutations(["toggleModal", "setData", "changeNumber"]),
     closeNewBoardModal() {
       this.toggleModal(false);
       this.resetInputValue();
@@ -75,15 +75,27 @@ export default {
     },
     addNewBoard() {
       if (this.vueTrelloCloneData.board) {
-        const boardNum = this.vueTrelloCloneData.board.length;
-        const dataToAdd = { id: boardNum, name: this.name };
-        const rawData = normalizeObj(this.vueTrelloCloneData);
-        rawData.board[boardNum] = dataToAdd;
-        this.setData(rawData);
+        this.setNewBoardToData();
       } else {
-        const initialData = { board: [{ id: 0, name: this.name }] };
-        this.setData(initialData);
+        this.setTheFirstBoardToTheData();
       }
+    },
+    setNewBoardToData() {
+      const rawData = normalizeObj(this.vueTrelloCloneData);
+      const boardNum = this.vueTrelloCloneData.board.length;
+      rawData.board[boardNum] = {
+        id: boardNum,
+        name: this.name,
+        current: false
+      };
+      this.setData(rawData);
+    },
+    setTheFirstBoardToTheData() {
+      const initialData = {
+        board: [{ id: 0, name: this.name, current: true }]
+      };
+      this.setData(initialData);
+      this.changeNumber(0);
     },
     focusInput(elm) {
       elm.focus();

@@ -27,7 +27,7 @@ export const newBoardModal = {
 
 export const currentBoard = {
   state: {
-    number: 0
+    number: null
   },
   mutations: {
     changeNumber(state, payload) {
