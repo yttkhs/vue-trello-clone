@@ -25,9 +25,21 @@ export const newBoardModal = {
   }
 };
 
+export const currentBoard = {
+  state: {
+    number: 0
+  },
+  mutations: {
+    changeNumber(state, payload) {
+      state.number = payload;
+    }
+  }
+};
+
 export default new Vuex.Store({
   modules: {
     vueTrelloClone: vueTrelloClone,
-    newBoardModal: newBoardModal
+    newBoardModal: newBoardModal,
+    currentBoard: currentBoard
   }
 });
