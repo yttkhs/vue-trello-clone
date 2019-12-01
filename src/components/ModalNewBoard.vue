@@ -27,13 +27,10 @@
           <input type="text" ref="name" v-model="name" />
         </label>
       </form>
-      <button
-        class="button-add-new-board"
+      <ButtonAdd
         :class="{ 'no-input': !confirmInputName }"
         @click="clickAddNewBoardButton"
-      >
-        <font-awesome-icon :icon="['fas', 'plus-circle']" />作成する
-      </button>
+      />
     </div>
   </div>
 </template>
@@ -41,9 +38,11 @@
 <script>
 import { mapMutations, mapState } from "vuex";
 import normalizeObj from "../lib/normalizeObj";
+import ButtonAdd from "./ButtonAdd";
 
 export default {
   name: "ModalNewBoard",
+  components: { ButtonAdd },
   data() {
     return {
       name: ""
@@ -170,26 +169,6 @@ export default {
 
   &:hover {
     color: $COLOR_RED;
-  }
-}
-
-.button-add-new-board {
-  margin-top: 10px;
-  width: 100px;
-  border-radius: 2.5px;
-  height: 30px;
-  font-size: 14px;
-  line-height: 30px;
-  background-color: $COLOR_GREEN;
-  color: #fff;
-
-  &.no-input {
-    cursor: not-allowed;
-    background-color: lighten($COLOR_GREEN, 20%);
-  }
-
-  svg {
-    margin-right: 5px;
   }
 }
 </style>
