@@ -2,7 +2,10 @@
   <div class="base-board">
     <h2 class="base-board--name">{{ currentBoardData.name }}</h2>
     <div class="base-board--lists">
-      <base-list />
+      <template v-if="listExists">
+        <base-list />
+      </template>
+      <BlockAddList />
     </div>
   </div>
 </template>
@@ -10,10 +13,11 @@
 <script>
 import { mapState } from "vuex";
 import BaseList from "./BaseList";
+import BlockAddList from "./BlockAddList";
 
 export default {
   name: "BaseBoard",
-  components: { BaseList },
+  components: { BlockAddList, BaseList },
   data() {
     return {
       currentBoardData: ""
@@ -26,7 +30,10 @@ export default {
     ...mapState({
       currentBoard: state => state.currentBoard.number,
       vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"]
-    })
+    }),
+    listExists() {
+      return this.currentBoardData.list !== undefined;
+    }
   },
   methods: {}
 };
@@ -41,6 +48,7 @@ export default {
   &--lists {
     width: 100%;
     display: flex;
+    margin-top: 20px;
   }
 }
 </style>
