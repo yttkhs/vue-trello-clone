@@ -1,13 +1,9 @@
 <template>
   <div class="base-list">
-    <div class="base-list--wrap">
-      <template>
-        <button class="button-add-list">リストを追加する</button>
-      </template>
-      <template>
-        <ul class="base-list--items"></ul>
-      </template>
-    </div>
+    <h3 class="base-list--name"></h3>
+    <ul class="base-list--items">
+      <li></li>
+    </ul>
   </div>
 </template>
 
@@ -20,30 +16,15 @@ export default {
 <style scoped lang="scss">
 .base-list {
   width: $BASE_LIST_WIDTH;
+  background-color: #999;
+  padding: 5px;
 
   &:not(:first-of-type) {
     margin-left: 10px;
   }
 
   &--items {
-    width: $BASE_LIST_WIDTH;
-    background-color: #999;
-    padding: 5px;
-  }
-}
-
-.button-add-list {
-  width: $BASE_LIST_WIDTH;
-  background-color: #aaa;
-  border-radius: 5px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 14px;
-  color: #fff;
-  text-align: center;
-
-  &:hover {
-    cursor: pointer;
+    width: 100%;
   }
 }
 </style>

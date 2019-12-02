@@ -1,25 +1,11 @@
 <template>
-  <div
-    class="modal-new-board"
-    v-show="newBoardModal"
-    @click.self="closeNewBoardModal"
-  >
+  <div class="modal-new-board" v-show="newBoardModal">
     <div class="modal-new-board--modal">
       <header class="modal-new-board--modal--header">
-        <h1 class="modal-new-board--modal--header-title">
-          新規ボードの作成
-        </h1>
-        <button
-          class="button-close-new-board-modal"
-          @click="closeNewBoardModal"
-        >
-          <font-awesome-icon :icon="['fas', 'times-circle']" />
-        </button>
+        <h1 class="modal-new-board--modal--header-title">新規ボードの作成</h1>
+        <ButtonCloseNewBoardModal @close="closeModalNewBoard" />
       </header>
-      <form
-        @submit.prevent="clickAddNewBoardButton"
-        class="modal-new-board--modal--form"
-      >
+      <form @submit.prevent="addNewBoard" class="modal-new-board--modal--form">
         <label>
           <span class="modal-new-board--modal--form-description">
             ボードの名前を入力してください
@@ -27,9 +13,9 @@
           <input type="text" ref="name" v-model="name" />
         </label>
       </form>
-      <ButtonAdd
+      <ButtonAddNewBoard
         :class="{ 'no-input': !confirmInputName }"
-        @click="clickAddNewBoardButton"
+        @clickButton="addNewBoard"
       />
     </div>
   </div>
@@ -38,11 +24,12 @@
 <script>
 import { mapMutations, mapState } from "vuex";
 import normalizeObj from "../lib/normalizeObj";
-import ButtonAdd from "./ButtonAdd";
+import ButtonAddNewBoard from "./ButtonAddNewBoard";
+import ButtonCloseNewBoardModal from "./ButtonCloseNewBoardModal";
 
 export default {
   name: "ModalNewBoard",
-  components: { ButtonAdd },
+  components: { ButtonCloseNewBoardModal, ButtonAddNewBoard },
   data() {
     return {
       name: ""
@@ -59,20 +46,20 @@ export default {
   },
   methods: {
     ...mapMutations(["toggleModal", "setData", "changeNumber"]),
-    closeNewBoardModal() {
+    closeModalNewBoard() {
       this.toggleModal(false);
       this.resetInputValue();
     },
-    clickAddNewBoardButton() {
+    addNewBoard() {
       if (this.confirmInputName) {
-        this.addNewBoard();
-        this.closeNewBoardModal();
+        this.readyToAddANewBoard();
+        this.closeModalNewBoard();
         this.resetInputValue();
       } else {
         alert("ボードの名前を入力してください");
       }
     },
-    addNewBoard() {
+    readyToAddANewBoard() {
       if (this.vueTrelloCloneData.board) {
         this.setNewBoardToData();
       } else {
@@ -158,17 +145,6 @@ export default {
         width: 100%;
       }
     }
-  }
-}
-
-.button-close-new-board-modal {
-  background-color: #444;
-  color: #fff;
-  font-size: 18px;
-  transition: color ease-out 0.3s;
-
-  &:hover {
-    color: $COLOR_RED;
   }
 }
 </style>

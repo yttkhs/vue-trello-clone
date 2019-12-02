@@ -7,22 +7,18 @@
       />VUE TRELLO CLONE
     </h1>
     <div class="header--nav">
-      <button class="button-add-board" @click="openNewBoardModal">
-        <font-awesome-icon :icon="['fas', 'plus-circle']" />
-      </button>
-      <button class="button-open-board-list">
-        <font-awesome-icon
-          :icon="['fas', 'th-list']"
-          class="button-open-board-list--icon"
-        />ボードリスト
-      </button>
+      <ButtonOpenNewBoardModal @open="openNewBoardModal" />
+      <ButtonOpenBoardList />
     </div>
   </header>
 </template>
 
 <script>
+import ButtonOpenNewBoardModal from "./ButtonOpenNewBoardModal";
+import ButtonOpenBoardList from "./ButtonOpenBoardList";
 export default {
   name: "TheHeader",
+  components: { ButtonOpenBoardList, ButtonOpenNewBoardModal },
   data() {
     return {};
   },
@@ -54,34 +50,6 @@ export default {
       font-size: 20px;
       margin-right: 15px;
     }
-  }
-}
-
-button[class^="button"] {
-  border-radius: 5px;
-  font-size: 14px;
-  height: 30px;
-  line-height: 30px;
-  background-color: #777;
-  color: #fff;
-}
-
-.button-add-board {
-  width: 30px;
-  transition: color ease-out 0.3s;
-
-  &:hover {
-    color: $COLOR_GREEN;
-  }
-}
-
-.button-open-board-list {
-  width: 130px;
-  color: #fff;
-  margin-left: 5px;
-
-  &--icon {
-    margin-right: 10px;
   }
 }
 </style>
