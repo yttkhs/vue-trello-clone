@@ -3,7 +3,7 @@
     <TheHeader />
     <ModalNewBoard />
     <BaseBoard v-if="boardExists" />
-    <InitialScreen v-else />
+    <TheInitialScreen v-else />
   </div>
 </template>
 
@@ -13,13 +13,13 @@ import { LocalStorage } from "./lib/LocalStorage";
 import TheHeader from "./components/TheHeader";
 import BaseBoard from "./components/BaseBoard";
 import ModalNewBoard from "./components/ModalNewBoard";
-import InitialScreen from "./components/InitialScreen";
+import TheInitialScreen from "./components/TheInitialScreen";
 
 const STORAGE_KEY = "vue-trello-clone";
 
 export default {
   name: "app",
-  components: { InitialScreen, ModalNewBoard, BaseBoard, TheHeader },
+  components: { TheInitialScreen, ModalNewBoard, BaseBoard, TheHeader },
   created() {
     this.setData(LocalStorage.fetch(STORAGE_KEY));
     this.changeNumber(this.fetchCurrentBoard());
