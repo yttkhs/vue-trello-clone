@@ -1,12 +1,12 @@
 <template>
-  <button @click="open" class="button-open-add-new-list-form">
-    <font-awesome-icon :icon="['fas', 'plus-circle']" />リストを追加
+  <button @click="open" class="button-open-add-new-card-form">
+    <font-awesome-icon :icon="['fas', 'plus-circle']" />カードを追加
   </button>
 </template>
 
 <script>
 export default {
-  name: "ButtonOpenAddNewListForm",
+  name: "ButtonOpenAddNewCardForm",
   methods: {
     open() {
       this.$emit("open");
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.button-open-add-new-list-form {
+.button-open-add-new-card-form {
   width: 100%;
   border-radius: 5px;
   line-height: 40px;

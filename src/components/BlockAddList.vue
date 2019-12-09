@@ -35,13 +35,9 @@ export default {
   components: { ButtonAddNewList, ButtonOpenAddNewListForm },
   data() {
     return {
-      currentBoardData: undefined,
       formOpen: false,
       listName: ""
     };
-  },
-  created() {
-    this.currentBoardData = this.vueTrelloCloneData.board[this.currentBoard];
   },
   computed: {
     ...mapState({
@@ -50,6 +46,9 @@ export default {
     }),
     confirmInputName() {
       return this.listName.length > 0;
+    },
+    currentBoardData() {
+      return this.vueTrelloCloneData.board[this.currentBoard];
     }
   },
   methods: {
@@ -70,12 +69,24 @@ export default {
         this.setTheFirstListToData();
       }
     },
-    setNewListToData() {},
+    setNewListToData() {
+      const rawData = normalizeObj(this.vueTrelloCloneData);
+      const listNum = this.vueTrelloCloneData.board[this.currentBoard].list
+        .length;
+      rawData.board[this.currentBoard].list[listNum] = {
+        id: listNum,
+        name: this.listName,
+        card: []
+      };
+      this.setData(rawData);
+      console.log("run setNewListToData");
+    },
     setTheFirstListToData() {
-      const initialData = { id: 0, name: this.listName };
+      const initialData = { id: 0, name: this.listName, card: [] };
       const rawData = normalizeObj(this.vueTrelloCloneData);
       rawData.board[this.currentBoard].list = [initialData];
       this.setData(rawData);
+      console.log("run setTheFirstListToData");
     },
     openNewListForm() {
       this.formOpen = true;
@@ -99,10 +110,6 @@ export default {
 
   &--form {
     padding: 10px;
-
-    input {
-      width: 100%;
-    }
 
     &-button {
       margin-top: 10px;

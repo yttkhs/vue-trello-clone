@@ -6,7 +6,14 @@
     </h2>
     <div class="base-board--contents">
       <template v-if="listExists">
-        <base-list class="base-board--contents-item" />
+        <BaseList
+          v-for="(list, index) in currentBoardData.list"
+          :cards="list.card[index]"
+          :name="list.name"
+          :id="list.id"
+          :key="list.id"
+          class="base-board--contents-item"
+        />
       </template>
       <BlockAddList class="base-board--contents-item" />
     </div>
@@ -22,18 +29,16 @@ export default {
   name: "BaseBoard",
   components: { BlockAddList, BaseList },
   data() {
-    return {
-      currentBoardData: ""
-    };
-  },
-  created() {
-    this.currentBoardData = this.vueTrelloCloneData.board[this.currentBoard];
+    return {};
   },
   computed: {
     ...mapState({
       currentBoard: state => state.currentBoard.number,
       vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"]
     }),
+    currentBoardData() {
+      return this.vueTrelloCloneData.board[this.currentBoard];
+    },
     listExists() {
       return (
         this.vueTrelloCloneData.board[this.currentBoard].list !== undefined

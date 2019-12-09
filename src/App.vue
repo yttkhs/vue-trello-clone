@@ -72,6 +72,7 @@ button[class^="button-"] {
 }
 
 input {
+  width: 100%;
   font-size: 16px;
   line-height: 30px;
   border-radius: 2.5px;
