@@ -1,12 +1,17 @@
 <template>
-  <button class="ButtonCloseModalEditCard">
+  <button @click="closeModalEditCard" class="ButtonCloseModalEditCard">
     <font-awesome-icon :icon="['fas', 'times-circle']" />
   </button>
 </template>
 
 <script>
 export default {
-  name: "ButtonCloseModalEditCard"
+  name: "ButtonCloseModalEditCard",
+  methods: {
+    closeModalEditCard() {
+      this.$emit("close");
+    }
+  }
 };
 </script>
 

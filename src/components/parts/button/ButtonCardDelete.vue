@@ -1,12 +1,17 @@
 <template>
-  <button class="ButtonCardDelete">
+  <button @click="deleteData" class="ButtonCardDelete">
     <font-awesome-icon :icon="['fas', 'times']" />削除
   </button>
 </template>
 
 <script>
 export default {
-  name: "ButtonCardDelete"
+  name: "ButtonCardDelete",
+  methods: {
+    deleteData() {
+      this.$emit("delete");
+    }
+  }
 };
 </script>
 

@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     openNewBoardModal() {
-      this.$store.commit("toggleModal", true);
+      this.$store.commit("toggleBoardModal", true);
     }
   }
 };

@@ -70,9 +70,10 @@ export default {
   box-sizing: border-box;
 }
 
-button[class^="button-"] {
+button {
   border: 0;
   padding: 0;
+  outline: 0;
 
   &:hover {
     cursor: pointer;
@@ -83,10 +84,11 @@ input {
   width: 100%;
   font-size: 16px;
   line-height: 30px;
-  border-radius: 2.5px;
+  border-radius: 5px;
   padding: 2.5px 10px;
   border: 0;
-  color: #222;
+  outline: 0;
+  color: $COLOR_TEXT;
   background-color: rgba(#fff, 0.6);
 
   &:focus {

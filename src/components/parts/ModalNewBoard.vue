@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-new-board" v-show="newBoardModal">
+  <div class="modal-new-board" v-show="modalNewBoard">
     <div class="modal-new-board--modal">
       <header class="modal-new-board--modal--header">
         <h1 class="modal-new-board--modal--header-title">新規ボードの作成</h1>
@@ -38,16 +38,16 @@ export default {
   computed: {
     ...mapState({
       vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"],
-      newBoardModal: state => state.newBoardModal.modal
+      modalNewBoard: state => state.modalNewBoard.modal
     }),
     confirmInputName() {
       return this.name.length > 0;
     }
   },
   methods: {
-    ...mapMutations(["toggleModal", "setData", "changeNumber"]),
+    ...mapMutations(["toggleBoardModal", "setData", "changeNumber"]),
     closeModalNewBoard() {
-      this.toggleModal(false);
+      this.toggleBoardModal(false);
       this.resetInputValue();
     },
     addNewBoard() {
@@ -108,7 +108,7 @@ export default {
   background-color: rgba(#000, 0.5);
 
   &--modal {
-    width: 350px;
+    width: $MODAL_WIDTH;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -120,7 +120,7 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #444;
+      background-color: $COLOR_MODAL_HEAD;
       border-radius: 5px 5px 0 0;
 
       &-title {
@@ -131,7 +131,7 @@ export default {
 
     &--form {
       padding: 10px;
-      background-color: #ccc;
+      background-color: $COLOR_BASE;
       border-radius: 0 0 5px 5px;
 
       &-description {

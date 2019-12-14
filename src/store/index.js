@@ -14,13 +14,28 @@ export const vueTrelloClone = {
   }
 };
 
-export const newBoardModal = {
+export const modalNewBoard = {
   state: {
     modal: false
   },
   mutations: {
-    toggleModal(state, payload) {
+    toggleBoardModal(state, payload) {
       state.modal = payload;
+    }
+  }
+};
+
+export const modalEditCard = {
+  state: {
+    modal: false,
+    data: {}
+  },
+  mutations: {
+    toggleCardModal(state, payload) {
+      state.modal = payload;
+    },
+    setCardData(state, data) {
+      state.data = data;
     }
   }
 };
@@ -39,7 +54,8 @@ export const currentBoard = {
 export default new Vuex.Store({
   modules: {
     vueTrelloClone: vueTrelloClone,
-    newBoardModal: newBoardModal,
+    modalNewBoard: modalNewBoard,
+    modalEditCard: modalEditCard,
     currentBoard: currentBoard
   }
 });

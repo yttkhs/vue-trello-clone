@@ -3,7 +3,7 @@
     <h3 class="base-list--name">{{ this.name }}</h3>
     <ul v-if="cards" class="base-list--items">
       <li class="base-list--item" v-for="card in cards" :key="card.id">
-        <BaseCard :name="card.name" />
+        <BaseCard :name="card.name" :id="card.id" :listId="id" />
       </li>
     </ul>
     <BlockAddCard :id="this.id" />

@@ -1,12 +1,17 @@
 <template>
-  <button class="ButtonCardEditComplete">
+  <button @click="complete" class="ButtonCardEditComplete">
     <font-awesome-icon :icon="['fas', 'check']" />完了
   </button>
 </template>
 
 <script>
 export default {
-  name: "ButtonCardEditComplete"
+  name: "ButtonCardEditComplete",
+  methods: {
+    complete() {
+      this.$emit("complete");
+    }
+  }
 };
 </script>
 
@@ -21,7 +26,6 @@ export default {
   background-color: $COLOR_GREEN;
   color: #fff;
   transition: background-color ease-out 0.3s;
-  border: 0;
 
   &:hover {
     cursor: pointer;

@@ -84,7 +84,7 @@ export default {
     setTheFirstCardToData() {
       const initialData = { id: 0, name: this.cardName };
       const rawData = normalizeObj(this.vueTrelloCloneData);
-      rawData.board[this.currentBoard].list[this.id].card = [initialData];
+      rawData.board[this.currentBoard].list[this.id].card[0] = initialData;
       this.setData(rawData);
     },
     openNewCardForm() {
