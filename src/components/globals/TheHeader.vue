@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import ButtonOpenNewBoardModal from "./ButtonOpenNewBoardModal";
-import ButtonOpenBoardList from "./ButtonOpenBoardList";
+import ButtonOpenNewBoardModal from "../parts/button/ButtonOpenNewBoardModal";
+import ButtonOpenBoardList from "../parts/button/ButtonOpenBoardList";
 export default {
   name: "TheHeader",
   components: { ButtonOpenBoardList, ButtonOpenNewBoardModal },

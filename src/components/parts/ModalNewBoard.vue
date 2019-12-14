@@ -23,9 +23,9 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import normalizeObj from "../lib/normalizeObj";
-import ButtonAddNewBoard from "./ButtonAddNewBoard";
-import ButtonCloseNewBoardModal from "./ButtonCloseNewBoardModal";
+import normalizeObj from "../../lib/normalizeObj";
+import ButtonAddNewBoard from "./button/ButtonAddNewBoard";
+import ButtonCloseNewBoardModal from "./button/ButtonCloseNewBoardModal";
 
 export default {
   name: "ModalNewBoard",

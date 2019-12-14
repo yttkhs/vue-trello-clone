@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import ButtonOpenAddNewCardForm from "./ButtonOpenAddNewCardForm";
-import ButtonAddNewCard from "./ButtonAddNewCard";
+import ButtonOpenAddNewCardForm from "./button/ButtonOpenAddNewCardForm";
+import ButtonAddNewCard from "./button/ButtonAddNewCard";
 import { mapMutations, mapState } from "vuex";
-import normalizeObj from "../lib/normalizeObj";
+import normalizeObj from "../../lib/normalizeObj";
 
 export default {
   name: "BlockAddCard",

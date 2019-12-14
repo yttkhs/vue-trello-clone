@@ -26,9 +26,9 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import normalizeObj from "../lib/normalizeObj";
-import ButtonOpenAddNewListForm from "./ButtonOpenAddNewListForm";
-import ButtonAddNewList from "./ButtonAddNewList";
+import normalizeObj from "../../lib/normalizeObj";
+import ButtonOpenAddNewListForm from "./button/ButtonOpenAddNewListForm";
+import ButtonAddNewList from "./button/ButtonAddNewList";
 
 export default {
   name: "ButtonAddList",

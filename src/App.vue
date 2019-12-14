@@ -2,6 +2,7 @@
   <div id="app">
     <TheHeader />
     <ModalNewBoard />
+    <ModalEditCard />
     <BaseBoard v-if="boardExists" />
     <TheInitialScreen v-else />
   </div>
@@ -10,16 +11,23 @@
 <script>
 import { mapMutations, mapState } from "vuex";
 import { _localStorage } from "./lib/_localStorage";
-import TheHeader from "./components/TheHeader";
-import BaseBoard from "./components/BaseBoard";
-import ModalNewBoard from "./components/ModalNewBoard";
-import TheInitialScreen from "./components/TheInitialScreen";
+import TheHeader from "./components/globals/TheHeader";
+import BaseBoard from "./components/parts/BaseBoard";
+import ModalNewBoard from "./components/parts/ModalNewBoard";
+import TheInitialScreen from "./components/globals/TheInitialScreen";
+import ModalEditCard from "./components/parts/ModalEditCard";
 
 const STORAGE_KEY = "vue-trello-clone";
 
 export default {
   name: "app",
-  components: { TheInitialScreen, ModalNewBoard, BaseBoard, TheHeader },
+  components: {
+    ModalEditCard,
+    TheInitialScreen,
+    ModalNewBoard,
+    BaseBoard,
+    TheHeader
+  },
   created() {
     this.setData(_localStorage.fetch(STORAGE_KEY));
     this.changeNumber(this.fetchCurrentBoard());

@@ -3,7 +3,7 @@
     <h3 class="base-list--name">{{ this.name }}</h3>
     <ul v-if="cards" class="base-list--items">
       <li class="base-list--item" v-for="card in cards" :key="card.id">
-        {{ card.name }}
+        <BaseCard :name="card.name" />
       </li>
     </ul>
     <BlockAddCard :id="this.id" />
@@ -12,9 +12,10 @@
 
 <script>
 import BlockAddCard from "./BlockAddCard";
+import BaseCard from "./BaseCard";
 export default {
   name: "BaseList",
-  components: { BlockAddCard },
+  components: { BaseCard, BlockAddCard },
   props: ["name", "cards", "id"],
   computed: {}
 };
@@ -43,15 +44,6 @@ export default {
   }
 
   &--item {
-    width: 100%;
-    padding: 10px;
-    background-color: $COLOR_WHITE;
-    color: $COLOR_TEXT;
-    border-radius: 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
     &:last-of-type {
       margin-bottom: 10px;
     }
