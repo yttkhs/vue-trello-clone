@@ -1,4 +1,4 @@
-export const LocalStorage = {
+export const _localStorage = {
   /**
    * ローカルストレージからデータを呼び出す
    * @param STORAGE_KEY
@@ -14,5 +14,12 @@ export const LocalStorage = {
    */
   set(STORAGE_KEY, DATA) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA));
+  },
+  /**
+   * ローカルストレージのデータを削除
+   * @param key
+   */
+  delete(key) {
+    localStorage.removeItem(key);
   }
 };

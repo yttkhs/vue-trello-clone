@@ -7,8 +7,8 @@
     <div class="base-board--contents">
       <template v-if="listExists">
         <BaseList
-          v-for="(list, index) in currentBoardData.list"
-          :cards="list.card[index]"
+          v-for="list in this.currentBoardData.list"
+          :cards="list.card"
           :name="list.name"
           :id="list.id"
           :key="list.id"
@@ -57,14 +57,12 @@ export default {
   &--name {
     font-size: 16px;
     color: #666;
-    line-height: 32px;
-    background: #ddd;
+    line-height: 30px;
     padding: 0 10px;
     letter-spacing: 0.1em;
-    display: inline-block;
 
     svg {
-      margin-right: 3px;
+      margin-right: 5px;
     }
   }
 
@@ -72,9 +70,18 @@ export default {
     width: 100%;
     display: flex;
     align-items: flex-start;
-    margin-top: 20px;
+    margin-top: 10px;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     &-item {
+      flex: none;
+
       &:not(:first-of-type) {
         margin-left: 10px;
       }

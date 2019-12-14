@@ -2,12 +2,12 @@
   <div class="block-add-card">
     <ButtonOpenAddNewCardForm v-show="!formOpen" @open="openNewCardForm" />
     <div v-show="formOpen" class="block-add-card--form">
-      <form @submit.prevent="">
+      <form @submit.prevent="addNewCard">
         <label>
           <input
             type="text"
             v-model="cardName"
-            placeholder="リストの名前を入力してください"
+            placeholder="カードの名前を入力してください"
           />
         </label>
       </form>
@@ -28,6 +28,7 @@
 import ButtonOpenAddNewCardForm from "./ButtonOpenAddNewCardForm";
 import ButtonAddNewCard from "./ButtonAddNewCard";
 import { mapMutations, mapState } from "vuex";
+import normalizeObj from "../lib/normalizeObj";
 
 export default {
   name: "BlockAddCard",
@@ -57,17 +58,34 @@ export default {
       if (this.confirmInputName) {
         this.readyToAddNewCard();
         this.resetInputValue();
-        this.closeNewListForm();
+        this.closeNewCardForm();
       } else {
         alert("カードの名前を入力してください");
       }
     },
     readyToAddNewCard() {
-      if (this.currentBoardData.list[this.id].card) {
-        this.setNewListToData();
+      if (this.currentBoardData.list[this.id].card.length) {
+        this.setNewCardToData();
       } else {
-        this.setTheFirstListToData();
+        this.setTheFirstCardToData();
       }
+    },
+    setNewCardToData() {
+      const rawData = normalizeObj(this.vueTrelloCloneData);
+      const cardNum = this.vueTrelloCloneData.board[this.currentBoard].list[
+        this.id
+      ].card.length;
+      rawData.board[this.currentBoard].list[this.id].card[cardNum] = {
+        id: cardNum,
+        name: this.cardName
+      };
+      this.setData(rawData);
+    },
+    setTheFirstCardToData() {
+      const initialData = { id: 0, name: this.cardName };
+      const rawData = normalizeObj(this.vueTrelloCloneData);
+      rawData.board[this.currentBoard].list[this.id].card = [initialData];
+      this.setData(rawData);
     },
     openNewCardForm() {
       this.formOpen = true;
@@ -96,7 +114,7 @@ export default {
   border-radius: 5px;
   width: 30px;
   height: 30px;
-  background-color: #666;
+  background-color: $COLOR_BUTTON;
   font-size: 14px;
   color: #fff;
   margin-left: 5px;

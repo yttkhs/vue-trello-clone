@@ -9,7 +9,7 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import { LocalStorage } from "./lib/LocalStorage";
+import { _localStorage } from "./lib/_localStorage";
 import TheHeader from "./components/TheHeader";
 import BaseBoard from "./components/BaseBoard";
 import ModalNewBoard from "./components/ModalNewBoard";
@@ -21,7 +21,7 @@ export default {
   name: "app",
   components: { TheInitialScreen, ModalNewBoard, BaseBoard, TheHeader },
   created() {
-    this.setData(LocalStorage.fetch(STORAGE_KEY));
+    this.setData(_localStorage.fetch(STORAGE_KEY));
     this.changeNumber(this.fetchCurrentBoard());
   },
   computed: {
@@ -46,7 +46,7 @@ export default {
   },
   watch: {
     vueTrelloCloneData() {
-      LocalStorage.set(STORAGE_KEY, this.vueTrelloCloneData);
+      _localStorage.set(STORAGE_KEY, this.vueTrelloCloneData);
     }
   }
 };

@@ -105,7 +105,7 @@ export default {
   right: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(#000, 0.6);
+  background-color: rgba(#000, 0.5);
 
   &--modal {
     width: 350px;

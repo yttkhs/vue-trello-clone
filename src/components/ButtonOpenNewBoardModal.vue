@@ -21,13 +21,13 @@ export default {
   font-size: 14px;
   height: 30px;
   line-height: 30px;
-  background-color: #777;
+  background-color: $COLOR_BUTTON;
   color: #fff;
   width: 30px;
-  transition: color ease-out 0.3s;
+  transition: background-color ease-out 0.3s;
 
   &:hover {
-    color: $COLOR_GREEN;
+    background-color: darken($COLOR_BUTTON, 10%);
   }
 }
 </style>

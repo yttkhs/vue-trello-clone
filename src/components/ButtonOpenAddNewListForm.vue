@@ -21,12 +21,12 @@ export default {
   border-radius: 5px;
   line-height: 40px;
   font-size: 14px;
-  background-color: #bbb;
+  background-color: $COLOR_BUTTON;
   color: #fff;
-  transition: color ease-out 0.3s;
+  transition: background-color ease-out 0.3s;
 
   &:hover {
-    color: #666;
+    background-color: darken($COLOR_BUTTON, 10%);
   }
 
   svg {

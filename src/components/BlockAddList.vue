@@ -79,14 +79,12 @@ export default {
         card: []
       };
       this.setData(rawData);
-      console.log("run setNewListToData");
     },
     setTheFirstListToData() {
       const initialData = { id: 0, name: this.listName, card: [] };
       const rawData = normalizeObj(this.vueTrelloCloneData);
       rawData.board[this.currentBoard].list = [initialData];
       this.setData(rawData);
-      console.log("run setTheFirstListToData");
     },
     openNewListForm() {
       this.formOpen = true;
@@ -106,7 +104,8 @@ export default {
 .block-add-list {
   width: $BASE_LIST_WIDTH;
   border-radius: 5px;
-  background-color: #bbb;
+  background-color: $COLOR_BASE;
+  flex: none;
 
   &--form {
     padding: 10px;
@@ -122,7 +121,7 @@ export default {
   border-radius: 5px;
   width: 30px;
   height: 30px;
-  background-color: #666;
+  background-color: $COLOR_BUTTON;
   font-size: 14px;
   color: #fff;
   margin-left: 5px;
