@@ -1,10 +1,10 @@
 <template>
-  <div class="base-board">
-    <h2 class="base-board--name">
+  <div class="BaseBoard">
+    <h2 class="BaseBoard__name">
       <font-awesome-icon :icon="['far', 'clipboard']" />
       {{ currentBoardData.name }}
     </h2>
-    <div class="base-board--contents">
+    <div class="BaseBoard__container">
       <template v-if="listExists">
         <BaseList
           v-for="list in this.currentBoardData.list"
@@ -12,10 +12,10 @@
           :name="list.name"
           :id="list.id"
           :key="list.id"
-          class="base-board--contents-item"
+          class="BaseBoard__content"
         />
       </template>
-      <BlockAddList class="base-board--contents-item" />
+      <BlockAddList class="BaseBoard__content" />
     </div>
   </div>
 </template>
@@ -49,12 +49,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.base-board {
+.BaseBoard {
   padding: 10px;
   min-height: calc(100vh - 50px);
   background-color: #f7f7f7;
 
-  &--name {
+  &__name {
     font-size: 16px;
     color: #666;
     line-height: 30px;
@@ -66,7 +66,7 @@ export default {
     }
   }
 
-  &--contents {
+  &__container {
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -78,13 +78,13 @@ export default {
     &::-webkit-scrollbar {
       display: none;
     }
+  }
 
-    &-item {
-      flex: none;
+  &__content {
+    flex: none;
 
-      &:not(:first-of-type) {
-        margin-left: 10px;
-      }
+    &:not(:first-of-type) {
+      margin-left: 10px;
     }
   }
 }

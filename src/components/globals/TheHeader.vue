@@ -1,12 +1,9 @@
 <template>
-  <header class="header">
-    <h1 class="header--title">
-      <font-awesome-icon
-        :icon="['fab', 'trello']"
-        class="header--title--icon"
-      />VUE TRELLO CLONE
+  <header class="Header">
+    <h1 class="Header__title">
+      <font-awesome-icon :icon="['fab', 'trello']" />VUE TRELLO CLONE
     </h1>
-    <div class="header--nav">
+    <div class="Header__nav">
       <ButtonOpenNewBoardModal @open="openNewBoardModal" />
       <ButtonOpenBoardList />
     </div>
@@ -31,7 +28,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.header {
+.Header {
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -39,17 +36,21 @@ export default {
   background-color: $COLOR_BASE;
   padding: 0 20px;
 
-  &--title {
+  &__title {
     color: #555;
     font-size: 16px;
     line-height: 30px;
     letter-spacing: 0.1em;
     font-weight: bold;
 
-    &--icon {
+    svg {
       font-size: 20px;
       margin-right: 15px;
     }
+  }
+
+  &__nav {
+    display: flex;
   }
 }
 </style>

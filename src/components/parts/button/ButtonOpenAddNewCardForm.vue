@@ -1,5 +1,5 @@
 <template>
-  <button @click="open" class="button-open-add-new-card-form">
+  <button @click="open" class="ButtonOpenAddNewCardForm">
     <font-awesome-icon :icon="['fas', 'plus-circle']" />カードを追加
   </button>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.button-open-add-new-card-form {
+.ButtonOpenAddNewCardForm {
   width: 100%;
   border-radius: 5px;
   line-height: 40px;

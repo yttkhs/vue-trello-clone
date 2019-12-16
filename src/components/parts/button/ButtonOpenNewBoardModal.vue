@@ -1,5 +1,5 @@
 <template>
-  <button class="button-add-board" @click="open">
+  <button class="ButtonAddBoard" @click="open">
     <font-awesome-icon :icon="['fas', 'plus-circle']" />
   </button>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.button-add-board {
+.ButtonAddBoard {
   border-radius: 5px;
   font-size: 14px;
   height: 30px;

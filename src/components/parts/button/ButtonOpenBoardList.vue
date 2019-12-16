@@ -1,9 +1,6 @@
 <template>
-  <button class="button-open-board-list">
-    <font-awesome-icon
-      :icon="['fas', 'th-list']"
-      class="button-open-board-list--icon"
-    />ボードリスト
+  <button class="ButtonOpenBoardList">
+    <font-awesome-icon :icon="['fas', 'th-list']" />ボードリスト
   </button>
 </template>
 
@@ -14,7 +11,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.button-open-board-list {
+.ButtonOpenBoardList {
   border-radius: 5px;
   font-size: 14px;
   height: 30px;
@@ -29,7 +26,7 @@ export default {
     background-color: darken($COLOR_BUTTON, 10%);
   }
 
-  &--icon {
+  svg {
     margin-right: 10px;
   }
 }

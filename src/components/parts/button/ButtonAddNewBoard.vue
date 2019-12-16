@@ -1,5 +1,5 @@
 <template>
-  <button @click="clickButton" class="button-add-new-board">
+  <button @click="clickButton" class="ButtonAddNewBoard">
     <font-awesome-icon :icon="['fas', 'plus-circle']" />作成する
   </button>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.button-add-new-board {
+.ButtonAddNewBoard {
   margin-top: 10px;
   width: 100px;
   border-radius: 5px;

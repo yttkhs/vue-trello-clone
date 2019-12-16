@@ -1,11 +1,11 @@
 <template>
-  <div class="base-list">
-    <h3 class="base-list__head">
-      <span class="base-list__name">{{ this.name }}</span>
+  <div class="BaseList">
+    <h3 class="BaseList__head">
+      <span class="BaseList__name">{{ this.name }}</span>
       <ButtonOpenModalEditList @open="openModalEditList" />
     </h3>
-    <ul v-if="cards" class="base-list__items">
-      <li class="base-list__item" v-for="card in cards" :key="card.id">
+    <ul v-if="cards" class="BaseList__items">
+      <li class="BaseList__item" v-for="card in cards" :key="card.id">
         <BaseCard :name="card.name" :id="card.id" :listId="id" />
       </li>
     </ul>
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.base-list {
+.BaseList {
   width: $BASE_LIST_WIDTH;
   background-color: $COLOR_BASE;
   padding: 15px 10px 10px;

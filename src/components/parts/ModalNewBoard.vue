@@ -1,13 +1,13 @@
 <template>
-  <div class="modal-new-board" v-show="modalNewBoard">
-    <div class="modal-new-board--modal">
-      <header class="modal-new-board--modal--header">
-        <h1 class="modal-new-board--modal--header-title">新規ボードの作成</h1>
+  <div class="ModalNewBoard" v-show="modalNewBoard">
+    <div class="ModalNewBoard__modal">
+      <header class="ModalNewBoard__header">
+        <h1 class="ModalNewBoard__title">新規ボードの作成</h1>
         <ButtonCloseNewBoardModal @close="closeModalNewBoard" />
       </header>
-      <form @submit.prevent="addNewBoard" class="modal-new-board--modal--form">
+      <form @submit.prevent="addNewBoard" class="ModalNewBoard__form">
         <label>
-          <span class="modal-new-board--modal--form-description">
+          <span class="ModalNewBoard__description">
             ボードの名前を入力してください
           </span>
           <input type="text" ref="name" v-model="name" />
@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.modal-new-board {
+.ModalNewBoard {
   position: fixed;
   top: 0;
   right: 0;
@@ -107,44 +107,44 @@ export default {
   height: 100vh;
   background-color: rgba(#000, 0.5);
 
-  &--modal {
+  &__modal {
     width: $MODAL_WIDTH;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
 
-    &--header {
-      height: 40px;
-      padding: 0 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: $COLOR_MODAL_HEAD;
-      border-radius: 5px 5px 0 0;
+  &__header {
+    height: 40px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $COLOR_MODAL_HEAD;
+    border-radius: 5px 5px 0 0;
+  }
 
-      &-title {
-        font-size: 14px;
-        color: #fff;
-      }
+  &__title {
+    font-size: 14px;
+    color: #fff;
+  }
+
+  &__form {
+    padding: 10px;
+    background-color: $COLOR_BASE;
+    border-radius: 0 0 5px 5px;
+
+    input {
+      width: 100%;
     }
+  }
 
-    &--form {
-      padding: 10px;
-      background-color: $COLOR_BASE;
-      border-radius: 0 0 5px 5px;
-
-      &-description {
-        display: block;
-        font-size: 12px;
-        margin-bottom: 10px;
-        color: #222;
-      }
-
-      input {
-        width: 100%;
-      }
-    }
+  &__description {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #222;
   }
 }
 </style>

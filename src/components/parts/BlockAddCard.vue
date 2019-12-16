@@ -1,7 +1,7 @@
 <template>
-  <div class="block-add-card">
+  <div class="BlockAddCard">
     <ButtonOpenAddNewCardForm v-show="!formOpen" @open="openNewCardForm" />
-    <div v-show="formOpen" class="block-add-card--form">
+    <div v-show="formOpen">
       <form @submit.prevent="addNewCard">
         <label>
           <input
@@ -11,12 +11,12 @@
           />
         </label>
       </form>
-      <div class="block-add-card--form-button">
+      <div class="BlockAddCard__button">
         <ButtonAddNewCard
           :class="{ 'no-input': !confirmInputName }"
           @add="addNewCard"
         />
-        <button @click="closeNewCardForm" class="button-add-new-card-cancel">
+        <button @click="closeNewCardForm" class="ButtonCloseBlockAddCard">
           <font-awesome-icon :icon="['fas', 'times-circle']" />
         </button>
       </div>
@@ -102,15 +102,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.block-add-card {
-  &--form {
-    &-button {
-      margin-top: 10px;
-    }
+.BlockAddCard {
+  &__button {
+    margin-top: 10px;
   }
 }
 
-.button-add-new-card-cancel {
+.ButtonCloseBlockAddCard {
   border-radius: 5px;
   width: 30px;
   height: 30px;

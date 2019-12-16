@@ -1,5 +1,5 @@
 <template>
-  <button @click="close" class="button-close-new-board-modal">
+  <button @click="close" class="ButtonCloseNewBoardModal">
     <font-awesome-icon :icon="['fas', 'times-circle']" />
   </button>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.button-close-new-board-modal {
+.ButtonCloseNewBoardModal {
   background-color: #444;
   color: #fff;
   font-size: 18px;

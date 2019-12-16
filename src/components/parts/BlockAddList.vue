@@ -1,7 +1,7 @@
 <template>
-  <div class="block-add-list">
+  <div class="BlockAddList">
     <ButtonOpenAddNewListForm v-show="!formOpen" @open="openNewListForm" />
-    <div v-show="formOpen" class="block-add-list--form">
+    <div v-show="formOpen" class="BlockAddList__form">
       <form @submit.prevent="addNewList">
         <label>
           <input
@@ -11,12 +11,12 @@
           />
         </label>
       </form>
-      <div class="block-add-list--form-button">
+      <div class="BlockAddList__button">
         <ButtonAddNewList
           :class="{ 'no-input': !confirmInputName }"
           @add="addNewList"
         />
-        <button @click="closeNewListForm" class="button-add-new-list-cancel">
+        <button @click="closeNewListForm" class="ButtonAddNewListCancel">
           <font-awesome-icon :icon="['fas', 'times-circle']" />
         </button>
       </div>
@@ -101,23 +101,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.block-add-list {
+.BlockAddList {
   width: $BASE_LIST_WIDTH;
   border-radius: 5px;
   background-color: $COLOR_BASE;
   flex: none;
 
-  &--form {
+  &__form {
     padding: 10px;
+  }
 
-    &-button {
-      margin-top: 10px;
-      display: flex;
-    }
+  &__button {
+    margin-top: 10px;
+    display: flex;
   }
 }
 
-.button-add-new-list-cancel {
+.ButtonAddNewListCancel {
   border-radius: 5px;
   width: 30px;
   height: 30px;

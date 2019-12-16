@@ -1,5 +1,5 @@
 <template>
-  <button @click="add" class="button-add-new-list">
+  <button @click="add" class="ButtonAddNewList">
     <font-awesome-icon :icon="['fas', 'plus-circle']" />リストを追加
   </button>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.button-add-new-list {
+.ButtonAddNewList {
   width: 130px;
   border-radius: 5px;
   height: 30px;
