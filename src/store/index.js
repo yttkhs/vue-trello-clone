@@ -25,6 +25,21 @@ export const modalNewBoard = {
   }
 };
 
+export const modalEditList = {
+  state: {
+    modal: false,
+    data: {}
+  },
+  mutations: {
+    toggleListModal(state, payload) {
+      state.modal = payload;
+    },
+    setListData(state, data) {
+      state.data = data;
+    }
+  }
+};
+
 export const modalEditCard = {
   state: {
     modal: false,
@@ -55,6 +70,7 @@ export default new Vuex.Store({
   modules: {
     vueTrelloClone: vueTrelloClone,
     modalNewBoard: modalNewBoard,
+    modalEditList: modalEditList,
     modalEditCard: modalEditCard,
     currentBoard: currentBoard
   }

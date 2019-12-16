@@ -3,6 +3,7 @@
     <TheHeader />
     <ModalNewBoard />
     <ModalEditCard />
+    <ModalEditList />
     <BaseBoard v-if="boardExists" />
     <TheInitialScreen v-else />
   </div>
@@ -16,12 +17,14 @@ import BaseBoard from "./components/parts/BaseBoard";
 import ModalNewBoard from "./components/parts/ModalNewBoard";
 import TheInitialScreen from "./components/globals/TheInitialScreen";
 import ModalEditCard from "./components/parts/ModalEditCard";
+import ModalEditList from "./components/parts/ModalEditList";
 
 const STORAGE_KEY = "vue-trello-clone";
 
 export default {
   name: "app",
   components: {
+    ModalEditList,
     ModalEditCard,
     TheInitialScreen,
     ModalNewBoard,

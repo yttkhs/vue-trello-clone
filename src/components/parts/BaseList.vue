@@ -1,8 +1,11 @@
 <template>
   <div class="base-list">
-    <h3 class="base-list--name">{{ this.name }}</h3>
-    <ul v-if="cards" class="base-list--items">
-      <li class="base-list--item" v-for="card in cards" :key="card.id">
+    <h3 class="base-list__head">
+      <span class="base-list__name">{{ this.name }}</span>
+      <ButtonOpenModalEditList @open="openModalEditList" />
+    </h3>
+    <ul v-if="cards" class="base-list__items">
+      <li class="base-list__item" v-for="card in cards" :key="card.id">
         <BaseCard :name="card.name" :id="card.id" :listId="id" />
       </li>
     </ul>
@@ -13,11 +16,17 @@
 <script>
 import BlockAddCard from "./BlockAddCard";
 import BaseCard from "./BaseCard";
+import ButtonOpenModalEditList from "./button/ButtonOpenModalEditList";
 export default {
   name: "BaseList",
-  components: { BaseCard, BlockAddCard },
+  components: { ButtonOpenModalEditList, BaseCard, BlockAddCard },
   props: ["name", "cards", "id"],
-  computed: {}
+  methods: {
+    openModalEditList() {
+      this.$store.commit("toggleListModal", true);
+      this.$store.commit("setListData", { id: this.id, name: this.name });
+    }
+  }
 };
 </script>
 
@@ -32,18 +41,28 @@ export default {
     margin-left: 10px;
   }
 
-  &--name {
-    font-size: 14px;
-    line-height: 100%;
-    color: $COLOR_TEXT;
+  &__head {
+    display: flex;
+    justify-content: space-between;
   }
 
-  &--items {
+  &__name {
+    font-size: 14px;
+    line-height: 25px;
+    color: $COLOR_TEXT;
+    flex: 1;
+    letter-spacing: 0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__items {
     width: 100%;
     margin-top: 15px;
   }
 
-  &--item {
+  &__item {
     &:last-of-type {
       margin-bottom: 10px;
     }

@@ -17,7 +17,7 @@
           @complete="reflectionNewCardData"
           :class="{ 'no-input': !confirmInputValue }"
         />
-        <ButtonCardDelete @delete="deleteCardDate" />
+        <ButtonCardDelete @delete="deleteCardData" />
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@ export default {
       data.board[x].list[y].card[z].name = this.cardName;
       this.setData(data);
     },
-    deleteCardDate() {
+    deleteCardData() {
       const data = normalizeObj(this.vueTrelloCloneData);
       const x = this.currentBoard;
       const y = this.cardData.listId;
