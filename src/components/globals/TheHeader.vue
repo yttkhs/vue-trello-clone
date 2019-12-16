@@ -1,9 +1,9 @@
 <template>
-  <header class="Header">
-    <h1 class="Header__title">
+  <header class="TheHeader">
+    <h1 class="TheHeader__title">
       <font-awesome-icon :icon="['fab', 'trello']" />VUE TRELLO CLONE
     </h1>
-    <div class="Header__nav">
+    <div class="TheHeader__nav">
       <ButtonOpenNewBoardModal @open="openNewBoardModal" />
       <ButtonOpenBoardList />
     </div>
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.Header {
+.TheHeader {
   height: 50px;
   display: flex;
   justify-content: space-between;

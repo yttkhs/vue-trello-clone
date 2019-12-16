@@ -1,5 +1,5 @@
 <template>
-  <div class="initial-screen">初期画面</div>
+  <div class="TheInitialScreen">初期画面</div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.initial-screen {
+.TheInitialScreen {
   font-size: 20px;
 }
 </style>
