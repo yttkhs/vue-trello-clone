@@ -2,6 +2,8 @@
   <div id="app">
     <TheHeader />
     <ModalNewBoard />
+    <ModalEditBoard />
+    <ModalBoardList />
     <ModalEditCard />
     <ModalEditList />
     <BaseBoard v-if="boardExists" />
@@ -18,12 +20,16 @@ import ModalNewBoard from "./components/parts/ModalNewBoard";
 import TheInitialScreen from "./components/globals/TheInitialScreen";
 import ModalEditCard from "./components/parts/ModalEditCard";
 import ModalEditList from "./components/parts/ModalEditList";
+import ModalBoardList from "./components/parts/ModalBoardList";
+import ModalEditBoard from "./components/parts/ModalEditBoard";
 
 const STORAGE_KEY = "vue-trello-clone";
 
 export default {
   name: "app",
   components: {
+    ModalEditBoard,
+    ModalBoardList,
     ModalEditList,
     ModalEditCard,
     TheInitialScreen,
@@ -33,21 +39,21 @@ export default {
   },
   created() {
     this.setData(_localStorage.fetch(STORAGE_KEY));
-    this.changeNumber(this.fetchCurrentBoard());
+    this.changeBoard(this.fetchCurrentBoard());
   },
   computed: {
     ...mapState({
       currentBoard: state => state.currentBoard.number,
-      vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"]
+      appData: state => state.vueTrelloClone["vue-trello-clone"]
     }),
     boardExists() {
       return this.currentBoard !== null;
     }
   },
   methods: {
-    ...mapMutations(["setData", "changeNumber"]),
+    ...mapMutations(["setData", "changeBoard"]),
     fetchCurrentBoard() {
-      const data = this.vueTrelloCloneData.board;
+      const data = this.appData.board;
       if (data) {
         return data.findIndex(board => board.current === true);
       } else {
@@ -56,8 +62,8 @@ export default {
     }
   },
   watch: {
-    vueTrelloCloneData() {
-      _localStorage.set(STORAGE_KEY, this.vueTrelloCloneData);
+    appData() {
+      _localStorage.set(STORAGE_KEY, this.appData);
     }
   }
 };

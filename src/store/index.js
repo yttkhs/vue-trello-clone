@@ -19,7 +19,33 @@ export const modalNewBoard = {
     modal: false
   },
   mutations: {
-    toggleBoardModal(state, payload) {
+    toggleModalNewBoard(state, payload) {
+      state.modal = payload;
+    }
+  }
+};
+
+export const modalEditBoard = {
+  state: {
+    modal: false,
+    data: {}
+  },
+  mutations: {
+    toggleModalEditBoard(state, payload) {
+      state.modal = payload;
+    },
+    setBoardData(state, data) {
+      state.data = data;
+    }
+  }
+};
+
+export const modalBoardList = {
+  state: {
+    modal: false
+  },
+  mutations: {
+    toggleModalBoardList(state, payload) {
       state.modal = payload;
     }
   }
@@ -60,7 +86,7 @@ export const currentBoard = {
     number: null
   },
   mutations: {
-    changeNumber(state, payload) {
+    changeBoard(state, payload) {
       state.number = payload;
     }
   }
@@ -70,6 +96,8 @@ export default new Vuex.Store({
   modules: {
     vueTrelloClone: vueTrelloClone,
     modalNewBoard: modalNewBoard,
+    modalEditBoard: modalEditBoard,
+    modalBoardList: modalBoardList,
     modalEditList: modalEditList,
     modalEditCard: modalEditCard,
     currentBoard: currentBoard

@@ -1,31 +1,35 @@
 <template>
-  <button @click="clickButton" class="ButtonAddNewBoard">
-    <font-awesome-icon :icon="['fas', 'plus-circle']" />作成する
+  <button @click="complete" class="ButtonBoardEditComplete">
+    <font-awesome-icon :icon="['fas', 'check']" />完了
   </button>
 </template>
 
 <script>
 export default {
-  name: "ButtonAddNewBoard",
+  name: "ButtonBoardEditComplete",
   methods: {
-    clickButton() {
-      this.$emit("clickButton");
+    complete() {
+      this.$emit("complete");
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-.ButtonAddNewBoard {
-  margin-top: 5px;
-  width: 100px;
+.ButtonBoardEditComplete {
+  width: 80px;
   border-radius: 5px;
   height: 30px;
   font-size: 14px;
-  line-height: 30px;
+  line-height: 15px;
+  padding: 7.5px 0;
   background-color: $COLOR_GREEN;
   color: #fff;
   transition: background-color ease-out 0.3s;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   &.no-input {
     cursor: not-allowed;

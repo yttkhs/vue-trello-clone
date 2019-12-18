@@ -1,12 +1,17 @@
 <template>
-  <button class="ButtonOpenBoardList">
+  <button @click="openModalBoardList" class="ButtonOpenBoardList">
     <font-awesome-icon :icon="['fas', 'th-list']" />ボードリスト
   </button>
 </template>
 
 <script>
 export default {
-  name: "ButtonOpenBoardList"
+  name: "ButtonOpenBoardList",
+  methods: {
+    openModalBoardList() {
+      this.$emit("open");
+    }
+  }
 };
 </script>
 

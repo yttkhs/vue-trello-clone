@@ -1,5 +1,9 @@
 <template>
-  <div class="ModalEditList" v-show="modalListExist">
+  <div
+    class="ModalEditList"
+    @click.self="closeModalEditList"
+    v-show="modalListExist"
+  >
     <div class="ModalEditList__modal">
       <header class="ModalEditList__header">
         <h2 class="ModalEditList__title">リストを編集する</h2>
@@ -44,7 +48,7 @@ export default {
   },
   computed: {
     ...mapState({
-      vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"],
+      appData: state => state.vueTrelloClone["vue-trello-clone"],
       currentBoard: state => state.currentBoard.number,
       modalListExist: state => state.modalEditList.modal,
       listData: state => state.modalEditList.data
@@ -64,14 +68,14 @@ export default {
       }
     },
     setNewListData() {
-      const data = normalizeObj(this.vueTrelloCloneData);
+      const data = normalizeObj(this.appData);
       const x = this.currentBoard;
       const y = this.listData.id;
       data.board[x].list[y].name = this.listName;
       this.setData(data);
     },
     deleteListData() {
-      const data = normalizeObj(this.vueTrelloCloneData);
+      const data = normalizeObj(this.appData);
       const x = this.currentBoard;
       const y = this.listData.id;
       data.board[x].list.splice(y, 1);
@@ -80,7 +84,7 @@ export default {
       this.closeModalEditList();
     },
     assignmentListId() {
-      const data = normalizeObj(this.vueTrelloCloneData);
+      const data = normalizeObj(this.appData);
       const x = this.currentBoard;
       const newListsData = data.board[x].list.map((list, index) => ({
         id: index,
@@ -111,6 +115,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(#000, 0.5);
+  z-index: 1;
 
   &__modal {
     position: absolute;

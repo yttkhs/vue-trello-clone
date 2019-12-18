@@ -1,5 +1,9 @@
 <template>
-  <div class="ModalEditCard" v-show="modalExist">
+  <div
+    class="ModalEditCard"
+    @click.self="closeModalEditCard"
+    v-show="modalExist"
+  >
     <div class="ModalEditCard__modal">
       <header class="ModalEditCard__header">
         <h2 class="ModalEditCard__title">カードを編集する</h2>
@@ -113,6 +117,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(#000, 0.5);
+  z-index: 1;
 
   &__modal {
     position: absolute;

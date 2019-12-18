@@ -1,5 +1,9 @@
 <template>
-  <div class="ModalNewBoard" v-show="modalNewBoard">
+  <div
+    class="ModalNewBoard"
+    @click.self="closeModalNewBoard"
+    v-show="modalNewBoard"
+  >
     <div class="ModalNewBoard__modal">
       <header class="ModalNewBoard__header">
         <h1 class="ModalNewBoard__title">新規ボードの作成</h1>
@@ -45,9 +49,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["toggleBoardModal", "setData", "changeNumber"]),
+    ...mapMutations(["toggleModalNewBoard", "setData", "changeBoard"]),
     closeModalNewBoard() {
-      this.toggleBoardModal(false);
+      this.toggleModalNewBoard(false);
       this.resetInputValue();
     },
     addNewBoard() {
@@ -81,7 +85,7 @@ export default {
         board: [{ id: 0, name: this.name, current: true }]
       };
       this.setData(initialData);
-      this.changeNumber(0);
+      this.changeBoard(0);
     },
     focusInput(elm) {
       elm.focus();

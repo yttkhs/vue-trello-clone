@@ -28,9 +28,6 @@ import BlockAddList from "./BlockAddList";
 export default {
   name: "BaseBoard",
   components: { BlockAddList, BaseList },
-  data() {
-    return {};
-  },
   computed: {
     ...mapState({
       currentBoard: state => state.currentBoard.number,

@@ -4,8 +4,8 @@
       <font-awesome-icon :icon="['fab', 'trello']" />VUE TRELLO CLONE
     </h1>
     <div class="TheHeader__nav">
-      <ButtonOpenNewBoardModal @open="openNewBoardModal" />
-      <ButtonOpenBoardList />
+      <ButtonOpenNewBoardModal @open="openModalNewBoard" />
+      <ButtonOpenBoardList @open="openModalBoardList" />
     </div>
   </header>
 </template>
@@ -20,8 +20,11 @@ export default {
     return {};
   },
   methods: {
-    openNewBoardModal() {
-      this.$store.commit("toggleBoardModal", true);
+    openModalNewBoard() {
+      this.$store.commit("toggleModalNewBoard", true);
+    },
+    openModalBoardList() {
+      this.$store.commit("toggleModalBoardList", true);
     }
   }
 };
