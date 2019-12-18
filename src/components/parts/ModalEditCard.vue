@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     ...mapState({
-      vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"],
+      appData: state => state.vueTrelloClone["vue-trello-clone"],
       currentBoard: state => state.currentBoard.number,
       modalExist: state => state.modalEditCard.modal,
       cardData: state => state.modalEditCard.data
@@ -68,7 +68,7 @@ export default {
       }
     },
     setNewCardData() {
-      const data = normalizeObj(this.vueTrelloCloneData);
+      const data = normalizeObj(this.appData);
       const x = this.currentBoard;
       const y = this.cardData.listId;
       const z = this.cardData.id;
@@ -76,7 +76,7 @@ export default {
       this.setData(data);
     },
     deleteCardData() {
-      const data = normalizeObj(this.vueTrelloCloneData);
+      const data = normalizeObj(this.appData);
       const x = this.currentBoard;
       const y = this.cardData.listId;
       const z = this.cardData.id;
@@ -86,7 +86,7 @@ export default {
       this.closeModalEditCard();
     },
     assignmentCardId() {
-      const data = normalizeObj(this.vueTrelloCloneData);
+      const data = normalizeObj(this.appData);
       const x = this.currentBoard;
       const y = this.cardData.listId;
       const newCardsData = data.board[x].list[y].card.map((card, index) => ({

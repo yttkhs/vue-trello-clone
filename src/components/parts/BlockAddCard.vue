@@ -43,13 +43,13 @@ export default {
   computed: {
     ...mapState({
       currentBoard: state => state.currentBoard.number,
-      vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"]
+      appData: state => state.vueTrelloClone["vue-trello-clone"]
     }),
     confirmInputName() {
       return this.cardName.length > 0;
     },
     currentBoardData() {
-      return this.vueTrelloCloneData.board[this.currentBoard];
+      return this.appData.board[this.currentBoard];
     }
   },
   methods: {
@@ -71,8 +71,8 @@ export default {
       }
     },
     setNewCardToData() {
-      const rawData = normalizeObj(this.vueTrelloCloneData);
-      const cardNum = this.vueTrelloCloneData.board[this.currentBoard].list[
+      const rawData = normalizeObj(this.appData);
+      const cardNum = this.appData.board[this.currentBoard].list[
         this.id
       ].card.length;
       rawData.board[this.currentBoard].list[this.id].card[cardNum] = {
@@ -83,7 +83,7 @@ export default {
     },
     setTheFirstCardToData() {
       const initialData = { id: 0, name: this.cardName };
-      const rawData = normalizeObj(this.vueTrelloCloneData);
+      const rawData = normalizeObj(this.appData);
       rawData.board[this.currentBoard].list[this.id].card[0] = initialData;
       this.setData(rawData);
     },

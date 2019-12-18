@@ -31,14 +31,14 @@ export default {
   computed: {
     ...mapState({
       currentBoard: state => state.currentBoard.number,
-      vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"]
+      appData: state => state.vueTrelloClone["vue-trello-clone"]
     }),
     currentBoardData() {
-      return this.vueTrelloCloneData.board[this.currentBoard];
+      return this.appData.board[this.currentBoard];
     },
     listExists() {
       return (
-        this.vueTrelloCloneData.board[this.currentBoard].list !== undefined
+        this.appData.board[this.currentBoard].list !== undefined
       );
     }
   }

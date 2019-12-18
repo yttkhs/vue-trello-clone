@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     ...mapState({
-      vueTrelloCloneData: state => state.vueTrelloClone["vue-trello-clone"],
+      appData: state => state.vueTrelloClone["vue-trello-clone"],
       modalNewBoard: state => state.modalNewBoard.modal
     }),
     confirmInputName() {
@@ -64,15 +64,15 @@ export default {
       }
     },
     readyToAddANewBoard() {
-      if (this.vueTrelloCloneData.board) {
+      if (this.appData.board) {
         this.setNewBoardToData();
       } else {
         this.setTheFirstBoardToTheData();
       }
     },
     setNewBoardToData() {
-      const rawData = normalizeObj(this.vueTrelloCloneData);
-      const boardNum = this.vueTrelloCloneData.board.length;
+      const rawData = normalizeObj(this.appData);
+      const boardNum = this.appData.board.length;
       rawData.board[boardNum] = {
         id: boardNum,
         name: this.name,
