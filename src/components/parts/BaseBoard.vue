@@ -5,16 +5,16 @@
       {{ currentBoardData.name }}
     </h2>
     <div class="BaseBoard__container">
-      <template v-if="listExists">
+      <draggable v-if="listExists" class="BaseBoard__content BaseBoard__lists">
         <BaseList
           v-for="list in this.currentBoardData.list"
           :cards="list.card"
           :name="list.name"
           :id="list.id"
           :key="list.id"
-          class="BaseBoard__content"
+          class="BaseBoard__list"
         />
-      </template>
+      </draggable>
       <BlockAddList class="BaseBoard__content" />
     </div>
   </div>
@@ -24,10 +24,11 @@
 import { mapState } from "vuex";
 import BaseList from "./BaseList";
 import BlockAddList from "./BlockAddList";
+import draggable from "vuedraggable";
 
 export default {
   name: "BaseBoard",
-  components: { BlockAddList, BaseList },
+  components: { BlockAddList, BaseList, draggable },
   computed: {
     ...mapState({
       currentBoard: state => state.currentBoard.number,
@@ -37,7 +38,7 @@ export default {
       return this.appData.board[this.currentBoard];
     },
     listExists() {
-      return this.appData.board[this.currentBoard].list !== undefined;
+      return this.appData.board[this.currentBoard].list.length;
     }
   }
 };
@@ -76,6 +77,19 @@ export default {
   }
 
   &__content {
+    flex: none;
+
+    &:not(:first-of-type) {
+      margin-left: 10px;
+    }
+  }
+
+  &__lists {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__list {
     flex: none;
 
     &:not(:first-of-type) {

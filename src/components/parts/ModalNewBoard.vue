@@ -113,6 +113,7 @@ export default {
   width: 100%;
   height: 100vh;
   background-color: rgba(#000, 0.5);
+  z-index: 10;
 
   &__modal {
     width: $MODAL_WIDTH;

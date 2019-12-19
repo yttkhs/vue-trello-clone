@@ -4,11 +4,11 @@
       <span class="BaseList__name">{{ this.name }}</span>
       <ButtonOpenModalEditList @open="openModalEditList" />
     </h3>
-    <ul v-if="cards" class="BaseList__items">
+    <draggable v-if="cards.length" tag="ul" class="BaseList__items">
       <li class="BaseList__item" v-for="card in cards" :key="card.id">
         <BaseCard :name="card.name" :id="card.id" :listId="id" />
       </li>
-    </ul>
+    </draggable>
     <BlockAddCard :id="this.id" />
   </div>
 </template>
@@ -17,9 +17,11 @@
 import BlockAddCard from "./BlockAddCard";
 import BaseCard from "./BaseCard";
 import ButtonOpenModalEditList from "./button/ButtonOpenModalEditList";
+import draggable from "vuedraggable";
+
 export default {
   name: "BaseList",
-  components: { ButtonOpenModalEditList, BaseCard, BlockAddCard },
+  components: { ButtonOpenModalEditList, BaseCard, BlockAddCard, draggable },
   props: ["name", "cards", "id"],
   methods: {
     openModalEditList() {
@@ -44,6 +46,7 @@ export default {
   &__head {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
   }
 
   &__name {
@@ -59,7 +62,6 @@ export default {
 
   &__items {
     width: 100%;
-    margin-top: 15px;
   }
 
   &__item {

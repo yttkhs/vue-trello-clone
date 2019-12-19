@@ -72,8 +72,7 @@ export default {
     },
     setNewListToData() {
       const rawData = normalizeObj(this.appData);
-      const listNum = this.appData.board[this.currentBoard].list
-        .length;
+      const listNum = this.appData.board[this.currentBoard].list.length;
       rawData.board[this.currentBoard].list[listNum] = {
         id: listNum,
         name: this.listName,

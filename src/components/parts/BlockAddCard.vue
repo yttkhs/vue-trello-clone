@@ -73,9 +73,8 @@ export default {
     },
     setNewCardToData() {
       const rawData = normalizeObj(this.appData);
-      const cardNum = this.appData.board[this.currentBoard].list[
-        this.id
-      ].card.length;
+      const cardNum = this.appData.board[this.currentBoard].list[this.id].card
+        .length;
       rawData.board[this.currentBoard].list[this.id].card[cardNum] = {
         id: cardNum,
         name: this.cardName
