@@ -12,7 +12,7 @@
       <div class="ModalEditBoard__form">
         <form @submit.prevent="reflectionBoardData">
           <label>
-            <input type="text" v-model="boardName" />
+            <input type="text" ref="boardName" v-model="boardName" />
           </label>
         </form>
       </div>
@@ -99,6 +99,9 @@ export default {
   },
   watch: {
     modalExist(value) {
+      this.$nextTick(() => {
+        if (value) this.$refs.boardName.focus();
+      });
       if (value) this.boardName = this.boardData.name;
     }
   }

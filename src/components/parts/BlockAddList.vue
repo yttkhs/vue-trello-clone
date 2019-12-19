@@ -7,6 +7,7 @@
           <input
             type="text"
             v-model="listName"
+            ref="listName"
             placeholder="リストの名前を入力してください"
           />
         </label>
@@ -95,6 +96,13 @@ export default {
     },
     resetInputValue() {
       this.listName = "";
+    }
+  },
+  watch: {
+    formOpen(value) {
+      this.$nextTick(() => {
+        if (value) this.$refs.listName.focus();
+      });
     }
   }
 };

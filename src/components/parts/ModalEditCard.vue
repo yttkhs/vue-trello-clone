@@ -12,7 +12,7 @@
       <div class="ModalEditCard__form">
         <form @submit.prevent="reflectionNewCardData">
           <label>
-            <input type="text" v-model="cardName" />
+            <input type="text" ref="cardName" v-model="cardName" />
           </label>
         </form>
       </div>
@@ -103,6 +103,9 @@ export default {
   },
   watch: {
     modalExist(value) {
+      this.$nextTick(() => {
+        if (value) this.$refs.cardName.focus();
+      });
       if (value) this.cardName = this.cardData.name;
     }
   }

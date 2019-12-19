@@ -37,9 +37,7 @@ export default {
       return this.appData.board[this.currentBoard];
     },
     listExists() {
-      return (
-        this.appData.board[this.currentBoard].list !== undefined
-      );
+      return this.appData.board[this.currentBoard].list !== undefined;
     }
   }
 };

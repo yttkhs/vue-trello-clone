@@ -7,6 +7,7 @@
           <input
             type="text"
             v-model="cardName"
+            ref="cardName"
             placeholder="カードの名前を入力してください"
           />
         </label>
@@ -96,6 +97,13 @@ export default {
     },
     resetInputValue() {
       this.cardName = "";
+    }
+  },
+  watch: {
+    formOpen(value) {
+      this.$nextTick(() => {
+        if (value) this.$refs.cardName.focus();
+      });
     }
   }
 };

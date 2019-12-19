@@ -9,12 +9,16 @@
         <h1 class="ModalNewBoard__title">新規ボードの作成</h1>
         <ButtonCloseNewBoardModal @close="closeModalNewBoard" />
       </header>
-      <form @submit.prevent="addNewBoard" class="ModalNewBoard__form">
+      <form
+        @submit.prevent="addNewBoard"
+        name="modalNewBoardForm"
+        class="ModalNewBoard__form"
+      >
         <label>
           <span class="ModalNewBoard__description">
             ボードの名前を入力してください
           </span>
-          <input type="text" ref="name" v-model="name" />
+          <input type="text" ref="boardName" v-model="name" />
         </label>
       </form>
       <ButtonAddNewBoard
@@ -87,16 +91,15 @@ export default {
       this.setData(initialData);
       this.changeBoard(0);
     },
-    focusInput(elm) {
-      elm.focus();
-    },
     resetInputValue() {
       this.name = "";
     }
   },
   watch: {
-    newBoardModal(val) {
-      if (val) this.focusInput(this.$refs.name);
+    modalNewBoard(value) {
+      this.$nextTick(() => {
+        if (value) this.$refs.boardName.focus();
+      });
     }
   }
 };

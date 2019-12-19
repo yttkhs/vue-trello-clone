@@ -12,7 +12,7 @@
       <div class="ModalEditList__form">
         <form @submit.prevent="reflectionNewListData">
           <label>
-            <input type="text" v-model="listName" />
+            <input type="text" ref="listName" v-model="listName" />
           </label>
         </form>
       </div>
@@ -101,6 +101,9 @@ export default {
   },
   watch: {
     modalListExist(value) {
+      this.$nextTick(() => {
+        if (value) this.$refs.listName.focus();
+      });
       if (value) this.listName = this.listData.name;
     }
   }
