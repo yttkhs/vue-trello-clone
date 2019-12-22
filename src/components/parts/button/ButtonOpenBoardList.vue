@@ -5,11 +5,26 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "ButtonOpenBoardList",
+  computed: {
+    ...mapState({
+      curBoardNum: state => state.curBoard.number,
+      appData: state => state.vueTrelloClone["vue-trello-clone"]
+    }),
+    boardExists() {
+      return this.curBoardNum !== null;
+    }
+  },
   methods: {
     openModalBoardList() {
-      this.$emit("open");
+      if (this.boardExists) {
+        this.$emit("open");
+      } else {
+        alert("ボードがありません。\n新規ボードを作成してください。");
+      }
     }
   }
 };
