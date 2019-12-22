@@ -43,14 +43,14 @@ export default {
   props: ["id"],
   computed: {
     ...mapState({
-      currentBoard: state => state.currentBoard.number,
+      curBoard: state => state.curBoard.number,
       appData: state => state.vueTrelloClone["vue-trello-clone"]
     }),
     confirmInputName() {
       return this.cardName.length > 0;
     },
-    currentBoardData() {
-      return this.appData.board[this.currentBoard];
+    curBoardData() {
+      return this.appData.board[this.curBoard];
     }
   },
   methods: {
@@ -65,7 +65,7 @@ export default {
       }
     },
     readyToAddNewCard() {
-      if (this.currentBoardData.list[this.id].card.length) {
+      if (this.curBoardData.list[this.id].card.length) {
         this.setNewCardToData();
       } else {
         this.setTheFirstCardToData();
@@ -73,9 +73,9 @@ export default {
     },
     setNewCardToData() {
       const rawData = normalizeObj(this.appData);
-      const cardNum = this.appData.board[this.currentBoard].list[this.id].card
+      const cardNum = this.appData.board[this.curBoard].list[this.id].card
         .length;
-      rawData.board[this.currentBoard].list[this.id].card[cardNum] = {
+      rawData.board[this.curBoard].list[this.id].card[cardNum] = {
         id: cardNum,
         name: this.cardName
       };
@@ -84,7 +84,7 @@ export default {
     setTheFirstCardToData() {
       const initialData = { id: 0, name: this.cardName };
       const rawData = normalizeObj(this.appData);
-      rawData.board[this.currentBoard].list[this.id].card[0] = initialData;
+      rawData.board[this.curBoard].list[this.id].card[0] = initialData;
       this.setData(rawData);
     },
     openNewCardForm() {

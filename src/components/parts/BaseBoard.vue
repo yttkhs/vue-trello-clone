@@ -2,12 +2,17 @@
   <div class="BaseBoard">
     <h2 class="BaseBoard__name">
       <font-awesome-icon :icon="['far', 'clipboard']" />
-      {{ currentBoardData.name }}
+      {{ curBoardData.name }}
     </h2>
     <div class="BaseBoard__container">
-      <draggable v-if="listExists" class="BaseBoard__content BaseBoard__lists">
+      <draggable
+        v-if="listExists"
+        v-model="curBoardListData"
+        @end="endDrag"
+        class="BaseBoard__content BaseBoard__lists"
+      >
         <BaseList
-          v-for="list in this.currentBoardData.list"
+          v-for="list in curBoardListData"
           :cards="list.card"
           :name="list.name"
           :id="list.id"
@@ -25,20 +30,57 @@ import { mapState } from "vuex";
 import BaseList from "./BaseList";
 import BlockAddList from "./BlockAddList";
 import draggable from "vuedraggable";
+import normalizeObj from "../../lib/normalizeObj";
 
 export default {
   name: "BaseBoard",
   components: { BlockAddList, BaseList, draggable },
+  data() {
+    return {
+      curBoardListData: null
+    };
+  },
+  created() {
+    this.curBoardListData = this.curBoardData.list;
+  },
   computed: {
     ...mapState({
-      currentBoard: state => state.currentBoard.number,
+      curBoardNum: state => state.curBoard.number,
       appData: state => state.vueTrelloClone["vue-trello-clone"]
     }),
-    currentBoardData() {
-      return this.appData.board[this.currentBoard];
+    curBoardData() {
+      return this.appData.board[this.curBoardNum];
     },
     listExists() {
-      return this.appData.board[this.currentBoard].list.length;
+      return this.curBoardData.list !== undefined;
+    }
+  },
+  methods: {
+    endDrag() {
+      const data = normalizeObj(this.appData);
+      const listData = normalizeObj(this.curBoardListData);
+      const num = this.curBoardNum;
+      data.board[num].list.splice(0);
+      data.board[num].list = listData;
+      this.$store.commit("setData", data);
+      this.assignListId();
+    },
+    assignListId() {
+      const data = normalizeObj(this.appData);
+      const num = this.curBoardNum;
+      const newListsData = data.board[num].list.map((list, index) => ({
+        id: index,
+        name: list.name,
+        card: list.card
+      }));
+      data.board[num].list.splice(0);
+      data.board[num].list = newListsData;
+      this.$store.commit("setData", data);
+    }
+  },
+  watch: {
+    curBoardData() {
+      this.curBoardListData = this.curBoardData.list;
     }
   }
 };

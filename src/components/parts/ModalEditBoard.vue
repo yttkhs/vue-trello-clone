@@ -49,7 +49,7 @@ export default {
   computed: {
     ...mapState({
       appData: state => state.vueTrelloClone["vue-trello-clone"],
-      currentBoard: state => state.currentBoard.number,
+      curBoard: state => state.curBoard.number,
       modalExist: state => state.modalEditBoard.modal,
       boardData: state => state.modalEditBoard.data
     }),

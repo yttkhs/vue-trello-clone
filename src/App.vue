@@ -43,11 +43,11 @@ export default {
   },
   computed: {
     ...mapState({
-      currentBoard: state => state.currentBoard.number,
+      curBoard: state => state.curBoard.number,
       appData: state => state.vueTrelloClone["vue-trello-clone"]
     }),
     boardExists() {
-      return this.currentBoard !== null;
+      return this.curBoard !== null;
     }
   },
   methods: {

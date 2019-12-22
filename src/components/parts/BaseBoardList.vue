@@ -19,7 +19,6 @@ export default {
   },
   computed: {
     ...mapState({
-      currentBoard: state => state.currentBoard.number,
       appData: state => state.vueTrelloClone["vue-trello-clone"]
     })
   },

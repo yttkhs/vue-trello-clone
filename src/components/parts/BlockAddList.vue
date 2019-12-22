@@ -42,14 +42,14 @@ export default {
   },
   computed: {
     ...mapState({
-      currentBoard: state => state.currentBoard.number,
+      curBoard: state => state.curBoard.number,
       appData: state => state.vueTrelloClone["vue-trello-clone"]
     }),
     confirmInputName() {
       return this.listName.length > 0;
     },
-    currentBoardData() {
-      return this.appData.board[this.currentBoard];
+    curBoardData() {
+      return this.appData.board[this.curBoard];
     }
   },
   methods: {
@@ -64,7 +64,7 @@ export default {
       }
     },
     readyToAddNewList() {
-      if (this.currentBoardData.list) {
+      if (this.curBoardData.list) {
         this.setNewListToData();
       } else {
         this.setTheFirstListToData();
@@ -72,8 +72,8 @@ export default {
     },
     setNewListToData() {
       const rawData = normalizeObj(this.appData);
-      const listNum = this.appData.board[this.currentBoard].list.length;
-      rawData.board[this.currentBoard].list[listNum] = {
+      const listNum = this.appData.board[this.curBoard].list.length;
+      rawData.board[this.curBoard].list[listNum] = {
         id: listNum,
         name: this.listName,
         card: []
@@ -83,7 +83,7 @@ export default {
     setTheFirstListToData() {
       const initialData = { id: 0, name: this.listName, card: [] };
       const rawData = normalizeObj(this.appData);
-      rawData.board[this.currentBoard].list = [initialData];
+      rawData.board[this.curBoard].list = [initialData];
       this.setData(rawData);
     },
     openNewListForm() {

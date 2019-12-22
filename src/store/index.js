@@ -81,7 +81,7 @@ export const modalEditCard = {
   }
 };
 
-export const currentBoard = {
+export const curBoard = {
   state: {
     number: null
   },
@@ -100,6 +100,6 @@ export default new Vuex.Store({
     modalBoardList: modalBoardList,
     modalEditList: modalEditList,
     modalEditCard: modalEditCard,
-    currentBoard: currentBoard
+    curBoard: curBoard
   }
 });
