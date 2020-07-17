@@ -77,6 +77,7 @@ export default {
     setNewBoardToData() {
       const rawData = normalizeObj(this.appData);
       const boardNum = this.appData.board.length;
+
       rawData.board[boardNum] = {
         id: boardNum,
         name: this.name,
@@ -88,6 +89,7 @@ export default {
       const initialData = {
         board: [{ id: 0, name: this.name, current: true }]
       };
+
       this.setData(initialData);
       this.changeBoard(0);
     },

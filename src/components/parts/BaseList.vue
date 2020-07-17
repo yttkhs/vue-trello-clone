@@ -57,6 +57,7 @@ export default {
       const data = normalizeObj(this.appData);
       const x = this.curBoardNum;
       const y = this.id;
+
       data.board[x].list[y].card.splice(0);
       data.board[x].list[y].card = this.cardsData;
       this.$store.commit("setData", data);
@@ -70,6 +71,7 @@ export default {
         id: index,
         name: card.name
       }));
+
       data.board[x].list[y].card.splice(0);
       data.board[x].list[y].card = newCardsData;
       this.$store.commit("setData", data);

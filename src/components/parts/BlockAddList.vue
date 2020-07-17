@@ -73,6 +73,7 @@ export default {
     setNewListToData() {
       const rawData = normalizeObj(this.appData);
       const listNum = this.appData.board[this.curBoard].list.length;
+
       rawData.board[this.curBoard].list[listNum] = {
         id: listNum,
         name: this.listName,
@@ -83,6 +84,7 @@ export default {
     setTheFirstListToData() {
       const initialData = { id: 0, name: this.listName, card: [] };
       const rawData = normalizeObj(this.appData);
+
       rawData.board[this.curBoard].list = [initialData];
       this.setData(rawData);
     },

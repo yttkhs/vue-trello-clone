@@ -72,6 +72,7 @@ export default {
       const x = this.curBoard;
       const y = this.cardData.listId;
       const z = this.cardData.id;
+
       data.board[x].list[y].card[z].name = this.cardName;
       this.setData(data);
     },
@@ -80,6 +81,7 @@ export default {
       const x = this.curBoard;
       const y = this.cardData.listId;
       const z = this.cardData.id;
+
       data.board[x].list[y].card.splice(z, 1);
       this.setData(data);
       this.assignmentCardId();
@@ -93,6 +95,7 @@ export default {
         id: index,
         name: card.name
       }));
+
       data.board[x].list[y].card.splice(0);
       data.board[x].list[y].card = newCardsData;
       this.setData(data);

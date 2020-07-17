@@ -54,11 +54,8 @@ export default {
     ...mapMutations(["setData", "changeBoard"]),
     fetchCurrentBoard() {
       const data = this.appData.board;
-      if (data) {
-        return data.findIndex(board => board.current === true);
-      } else {
-        return null;
-      }
+
+      return data ? data.findIndex(board => board.current === true) : null;
     }
   },
   watch: {

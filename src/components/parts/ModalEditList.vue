@@ -71,6 +71,7 @@ export default {
       const data = normalizeObj(this.appData);
       const x = this.curBoard;
       const y = this.listData.id;
+
       data.board[x].list[y].name = this.listName;
       this.setData(data);
     },
@@ -78,6 +79,7 @@ export default {
       const data = normalizeObj(this.appData);
       const x = this.curBoard;
       const y = this.listData.id;
+
       data.board[x].list.splice(y, 1);
       this.setData(data);
       this.assignmentListId();
@@ -91,6 +93,7 @@ export default {
         name: list.name,
         card: list.card
       }));
+
       data.board[x].list.splice(0);
       data.board[x].list = newListsData;
       this.setData(data);

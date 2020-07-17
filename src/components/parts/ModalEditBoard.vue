@@ -70,12 +70,14 @@ export default {
     setNewBoardData() {
       const data = normalizeObj(this.appData);
       const id = this.boardData.id;
+
       data.board[id].name = this.boardName;
       this.setData(data);
     },
     deleteBoardData() {
       const data = normalizeObj(this.appData);
       const id = this.boardData.id;
+
       data.board.splice(id, 1);
       this.setData(data);
       this.assignmentBoardId();
@@ -89,6 +91,7 @@ export default {
         current: board.current,
         list: board.list
       }));
+
       data.board.splice(0);
       data.board = newData;
       this.setData(data);

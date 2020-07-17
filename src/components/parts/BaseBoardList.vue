@@ -36,6 +36,7 @@ export default {
     setCurrentBoardNum() {
       const data = normalizeObj(this.appData);
       const id = this.id;
+
       data.board.forEach((val, index) => {
         data.board[index].current = index === id;
       });
