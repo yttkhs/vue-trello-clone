@@ -1,3 +1,3 @@
-# vue-trello-clone
+# ABOUT
 
 A trello clone created with vue.js
